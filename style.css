@@ -1,0 +1,13 @@
+body {
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+
+}
+
+#buttons-container {
+    height: 500px;
+    width: 450px;
+    margin-top: 200px;
+    background-color: red;
+}
