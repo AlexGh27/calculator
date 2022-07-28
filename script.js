@@ -2,9 +2,12 @@
 let output = 'car';
 document.getElementById('big-screen').innerHTML = output;
 
-function clear
+let clear = document.querySelector('#clear');
 
-
+clear.addEventListener('click', function(e) {
+    output = '';
+    document.getElementById('big-screen').innerHTML = output;
+})
 
 
 function operate (a, o, b) {
@@ -22,3 +25,5 @@ function operate (a, o, b) {
         return a / b;
     }
 }
+
+document.getElementById('big-screen').innerHTML = output;
