@@ -2,12 +2,33 @@ body {
     box-sizing: border-box;
     display: flex;
     justify-content: center;
-
+    
+    
 }
 
+#calculator {
+    height: 700px;
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+
+}
+#display {
+    width: 480px;
+    height: 100px;
+    background-color: blue;
+    margin:0px;
+}
 #buttons-container {
     height: 500px;
-    width: 450px;
-    margin-top: 200px;
+    width: 480px;
     background-color: red;
+}
+
+.normal-button {
+    height: 120px;
+    width: 120px;
 }
