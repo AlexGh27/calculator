@@ -114,33 +114,37 @@ divide.addEventListener('click', function(e) {
     document.getElementById('big-screen').innerHTML = output;
 });
 
+let percentage = document.querySelector('#percentage');
+
 percentage.addEventListener('click', function(e) {
-    output += ' ÷ ';
+    output += ' % ';
     document.getElementById('big-screen').innerHTML = output;
 });
 
+let equal = document.querySelector('#equal');
+
+equal.addEventListener('click', function(e) {
+    operate(output);
+});
 
 
-
-
-
-
-
-
-function operate () {
-
-    if (o === '+') {
-        return a + b;
+function operate (output) {
+    if (output.includes('x')) {
+        let newOutput = output.replace(/x/g, '*')
     }
-    else if (o === '-') {
-        return a - b;
+
+    else if (output.includes('÷')) {
+        let newOutput = output.replace(/÷/g, '/')
     }
-    else if (o === '*') {
-        return a * b;
+    else {
+        let newOutput = output;
     }
-    else if (o === '/') {
-        return a / b;
-    }
+
+    Math.floor(newOutput);
+
+    let result = newOutput;
+
+    document.getElementById('small-screen').innerHTML = newOutput;
+    
 }
 
-document.getElementById('big-screen').innerHTML = output;
