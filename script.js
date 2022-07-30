@@ -1,150 +1,161 @@
 
-let output = '';
-document.getElementById('big-screen').innerHTML = output;
+let bigScreenOutput = '';
+let smallScreenOutput = '';
+document.getElementById('big-screen').innerHTML = bigScreenOutput;
+document.getElementById('small-screen').innerHTML = smallScreenOutput;
 
-let clear = document.querySelector('#clear');
 
-clear.addEventListener('click', function(e) {
-    output = '';
-    document.getElementById('big-screen').innerHTML = output;
-});
-
-let zerp = document.querySelector('#zero');
+//Defining all the functions for all the calculator's numbers
+let zero = document.querySelector('#zero');
 
 zero.addEventListener('click', function(e) {
-    output += '0';
-    document.getElementById('big-screen').innerHTML = output;
+    bigScreenOutput += '0';
+    document.getElementById('big-screen').innerHTML = bigScreenOutput;
 });
 
 let one = document.querySelector('#one');
 
 one.addEventListener('click', function(e) {
-    output += '1';
-    document.getElementById('big-screen').innerHTML = output;
+    bigScreenOutput += '1';
+    document.getElementById('big-screen').innerHTML = bigScreenOutput;
 });
 
 let two = document.querySelector('#two');
 
 two.addEventListener('click', function(e) {
-    output += '2';
-    document.getElementById('big-screen').innerHTML = output;
+    bigScreenOutput += '2';
+    document.getElementById('big-screen').innerHTML = bigScreenOutput;
 });
 
 let three = document.querySelector('#three');
 
 three.addEventListener('click', function(e) {
-    output += '3';
-    document.getElementById('big-screen').innerHTML = output;
+    bigScreenOutput += '3';
+    document.getElementById('big-screen').innerHTML = bigScreenOutput;
 });
 
 let four = document.querySelector('#four');
 
 four.addEventListener('click', function(e) {
-    output += '4';
-    document.getElementById('big-screen').innerHTML = output;
+    bigScreenOutput += '4';
+    document.getElementById('big-screen').innerHTML = bigScreenOutput;
 });
 
 let five = document.querySelector('#five');
 
 five.addEventListener('click', function(e) {
-    output += '5';
-    document.getElementById('big-screen').innerHTML = output;
+    bigScreenOutput += '5';
+    document.getElementById('big-screen').innerHTML = bigScreenOutput;
 });
 
 let six = document.querySelector('#six');
 
 six.addEventListener('click', function(e) {
-    output += '6';
-    document.getElementById('big-screen').innerHTML = output;
+    bigScreenOutput += '6';
+    document.getElementById('big-screen').innerHTML = bigScreenOutput;
 });
 
 let seven = document.querySelector('#seven');
 
 seven.addEventListener('click', function(e) {
-    output += '7';
-    document.getElementById('big-screen').innerHTML = output;
+    bigScreenOutput += '7';
+    document.getElementById('big-screen').innerHTML = bigScreenOutput;
 });
 
 let eight = document.querySelector('#eight');
 
 eight.addEventListener('click', function(e) {
-    output += '8';
-    document.getElementById('big-screen').innerHTML = output;
+    bigScreenOutput += '8';
+    document.getElementById('big-screen').innerHTML = bigScreenOutput;
 });
 
 let nine = document.querySelector('#nine');
 
 nine.addEventListener('click', function(e) {
-    output += '9';
-    document.getElementById('big-screen').innerHTML = output;
+    bigScreenOutput += '9';
+    document.getElementById('big-screen').innerHTML = bigScreenOutput;
 });
 
 let dot = document.querySelector('#dot');
 
 dot.addEventListener('click', function(e) {
-    output += '.';
-    document.getElementById('big-screen').innerHTML = output;
+    bigScreenOutput += '.';
+    document.getElementById('big-screen').innerHTML = bigScreenOutput;
 });
 
 let plus = document.querySelector('#plus');
 
 plus.addEventListener('click', function(e) {
-    output += ' + ';
-    document.getElementById('big-screen').innerHTML = output;
+    bigScreenOutput += ' + ';
+    document.getElementById('big-screen').innerHTML = bigScreenOutput;
 });
 
 let minus = document.querySelector('#minus');
 
 minus.addEventListener('click', function(e) {
-    output += ' - ';
-    document.getElementById('big-screen').innerHTML = output;
+    bigScreenOutput += ' - ';
+    document.getElementById('big-screen').innerHTML = bigScreenOutput;
 });
 
 let multiply = document.querySelector('#multiply');
 
 multiply.addEventListener('click', function(e) {
-    output += ' x ';
-    document.getElementById('big-screen').innerHTML = output;
+    bigScreenOutput += ' x ';
+    document.getElementById('big-screen').innerHTML = bigScreenOutput;
 });
 
 let divide = document.querySelector('#divide');
 
 divide.addEventListener('click', function(e) {
-    output += ' ÷ ';
-    document.getElementById('big-screen').innerHTML = output;
+    bigScreenOutput += ' ÷ ';
+    document.getElementById('big-screen').innerHTML = bigScreenOutput;
 });
 
 let percentage = document.querySelector('#percentage');
 
 percentage.addEventListener('click', function(e) {
-    output += ' % ';
-    document.getElementById('big-screen').innerHTML = output;
+    bigScreenOutput += ' % ';
+    document.getElementById('big-screen').innerHTML = bigScreenOutput;
 });
 
 let equal = document.querySelector('#equal');
 
 equal.addEventListener('click', function(e) {
-    operate(output);
+    operate(bigScreenOutput);
 });
 
+//Defining the CLEAR function
+let clear = document.querySelector('#clear');
 
-function operate (output) {
-    if (output.includes('x')) {
-        let newOutput = output.replace(/x/g, '*')
+clear.addEventListener('click', function(e) {
+    bigScreenOutput = '';
+    smallScreenOutput = '';
+    document.getElementById('big-screen').innerHTML = bigScreenOutput;
+    document.getElementById('small-screen').innerHTML = smallScreenOutput;
+
+});
+
+//Defining the equal sign button function
+function operate (bigScreenOutput) {
+    let newOutput;
+    if (bigScreenOutput.includes('x')) {
+        newOutput = bigScreenOutput.replace(/x/g, '*')
     }
 
-    else if (output.includes('÷')) {
-        let newOutput = output.replace(/÷/g, '/')
+    else if (bigScreenOutput.includes('÷')) {
+        newOutput = bigScreenOutput.replace(/÷/g, '/')
     }
     else {
-        let newOutput = output;
+        newOutput = bigScreenOutput;
     }
-
-    Math.floor(newOutput);
 
     let result = newOutput;
 
-    document.getElementById('small-screen').innerHTML = newOutput;
+    Math.floor(result);
+
+    
+
+    document.getElementById('small-screen').innerHTML = result;
     
 }
 
