@@ -96,8 +96,11 @@ plus.addEventListener('click', function(e) {
 let minus = document.querySelector('#minus');
 
 minus.addEventListener('click', function(e) {
-    bigScreenOutput += '';
+    bigScreenOutput += ' - ';
+    smallScreenOutput = bigScreenOutput;
+    bigScreenOutput = '';
     document.getElementById('big-screen').innerHTML = bigScreenOutput;
+    document.getElementById('small-screen').innerHTML = smallScreenOutput;
 });
 
 let multiply = document.querySelector('#multiply');
@@ -142,19 +145,20 @@ clear.addEventListener('click', function(e) {
 function operate () {
     //Sum
     if (smallScreenOutput.includes('+')) {
-        let firstNumber = Number(smallScreenOutput.split(' + ', 1));
-        let secondNumber = Number(bigScreenOutput)
-        bigScreenOutput = firstNumber + secondNumber;
+        let firstNumber = smallScreenOutput.split(' + ', 1);
+        let secondNumber = bigScreenOutput;
+        bigScreenOutput = Number(firstNumber) + Number(secondNumber);
         document.getElementById('big-screen').innerHTML = bigScreenOutput;
         document.getElementById('small-screen').innerHTML = '';
     }
 
     //Subtraction
-    if (bigScreenOutput.includes('-')) {
-        let arrayOutput = bigScreenOutput.split('-');
-        let newOutput = Number(arrayOutput[0]) - Number(arrayOutput[1]);
-        document.getElementById('big-screen').innerHTML = newOutput;
-        bigScreenOutput = newOutput;
+    if (smallScreenOutput.includes('-')) {
+        let firstNumber = smallScreenOutput.split(' - ', 1);
+        let secondNumber = bigScreenOutput;
+        bigScreenOutput = Number(firstNumber) - Number(secondNumber);
+        document.getElementById('big-screen').innerHTML = bigScreenOutput;
+        document.getElementById('small-screen').innerHTML = '';
     }
 
     //Multiplication
