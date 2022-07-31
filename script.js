@@ -87,34 +87,37 @@ let plus = document.querySelector('#plus');
 
 plus.addEventListener('click', function(e) {
     bigScreenOutput += ' + ';
+    smallScreenOutput = bigScreenOutput;
+    bigScreenOutput = '';
     document.getElementById('big-screen').innerHTML = bigScreenOutput;
+    document.getElementById('small-screen').innerHTML = smallScreenOutput;
 });
 
 let minus = document.querySelector('#minus');
 
 minus.addEventListener('click', function(e) {
-    bigScreenOutput += ' - ';
+    bigScreenOutput += '';
     document.getElementById('big-screen').innerHTML = bigScreenOutput;
 });
 
 let multiply = document.querySelector('#multiply');
 
 multiply.addEventListener('click', function(e) {
-    bigScreenOutput += ' x ';
+    bigScreenOutput += '';
     document.getElementById('big-screen').innerHTML = bigScreenOutput;
 });
 
 let divide = document.querySelector('#divide');
 
 divide.addEventListener('click', function(e) {
-    bigScreenOutput += ' ÷ ';
+    bigScreenOutput += '';
     document.getElementById('big-screen').innerHTML = bigScreenOutput;
 });
 
 let percentage = document.querySelector('#percentage');
 
 percentage.addEventListener('click', function(e) {
-    bigScreenOutput += ' % ';
+    bigScreenOutput += '';
     document.getElementById('big-screen').innerHTML = bigScreenOutput;
 });
 
@@ -136,26 +139,51 @@ clear.addEventListener('click', function(e) {
 });
 
 //Defining the equal sign button function
-function operate (bigScreenOutput) {
-    let newOutput;
+function operate () {
+    //Sum
+    if (smallScreenOutput.includes('+')) {
+        let firstNumber = Number(smallScreenOutput.split(' + ', 1));
+        let secondNumber = Number(bigScreenOutput)
+        bigScreenOutput = firstNumber + secondNumber;
+        document.getElementById('big-screen').innerHTML = bigScreenOutput;
+        document.getElementById('small-screen').innerHTML = '';
+    }
+
+    //Subtraction
+    if (bigScreenOutput.includes('-')) {
+        let arrayOutput = bigScreenOutput.split('-');
+        let newOutput = Number(arrayOutput[0]) - Number(arrayOutput[1]);
+        document.getElementById('big-screen').innerHTML = newOutput;
+        bigScreenOutput = newOutput;
+    }
+
+    //Multiplication
     if (bigScreenOutput.includes('x')) {
-        newOutput = bigScreenOutput.replace(/x/g, '*')
+        let arrayOutput = bigScreenOutput.split('x');
+        let newOutput = Number(arrayOutput[0]) * Number(arrayOutput[1]);
+        document.getElementById('big-screen').innerHTML = newOutput;
+        bigScreenOutput = newOutput;
     }
 
-    else if (bigScreenOutput.includes('÷')) {
-        newOutput = bigScreenOutput.replace(/÷/g, '/')
+    //Division
+    if (bigScreenOutput.includes('÷')) {
+        let arrayOutput = bigScreenOutput.split('÷');
+        let newOutput = Number(arrayOutput[0]) / Number(arrayOutput[1]);
+        document.getElementById('big-screen').innerHTML = newOutput;
+        bigScreenOutput = newOutput;
     }
-    else {
-        newOutput = bigScreenOutput;
-    }
-
-    let result = newOutput;
-
-    Math.floor(result);
-
     
+    //Percentage
+    if (bigScreenOutput.includes('%')) {
+        let arrayOutput = bigScreenOutput.split('%');
+        if (arrayOutput[1] == ' ') {
+            arrayOutput[1] = 1;
+        }
+        let newOutput = Number(arrayOutput[0]) / 100 * Number(arrayOutput[1]);
+        document.getElementById('big-screen').innerHTML = newOutput;
+        bigScreenOutput = newOutput;
+        
+    }
 
-    document.getElementById('small-screen').innerHTML = result;
-    
 }
 
