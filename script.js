@@ -87,7 +87,7 @@ let plus = document.querySelector('#plus');
 
 plus.addEventListener('click', function(e) {
     bigScreenOutput += ' + ';
-    smallScreenOutput = bigScreenOutput;
+    smallScreenOutput += bigScreenOutput;
     bigScreenOutput = '';
     document.getElementById('big-screen').innerHTML = bigScreenOutput;
     document.getElementById('small-screen').innerHTML = smallScreenOutput;
@@ -106,15 +106,21 @@ minus.addEventListener('click', function(e) {
 let multiply = document.querySelector('#multiply');
 
 multiply.addEventListener('click', function(e) {
-    bigScreenOutput += '';
+    bigScreenOutput += ' x ';
+    smallScreenOutput = bigScreenOutput;
+    bigScreenOutput = '';
     document.getElementById('big-screen').innerHTML = bigScreenOutput;
+    document.getElementById('small-screen').innerHTML = smallScreenOutput;
 });
 
 let divide = document.querySelector('#divide');
 
 divide.addEventListener('click', function(e) {
-    bigScreenOutput += '';
+    bigScreenOutput += ' ÷ ';
+    smallScreenOutput = bigScreenOutput;
+    bigScreenOutput = '';
     document.getElementById('big-screen').innerHTML = bigScreenOutput;
+    document.getElementById('small-screen').innerHTML = smallScreenOutput;
 });
 
 let percentage = document.querySelector('#percentage');
@@ -144,16 +150,22 @@ clear.addEventListener('click', function(e) {
 //Defining the equal sign button function
 function operate () {
     //Sum
-    if (smallScreenOutput.includes('+')) {
-        let firstNumber = smallScreenOutput.split(' + ', 1);
+    if (smallScreenOutput.includes(' + ')) {
+        let firstNumberArray = smallScreenOutput.split(' + ', smallScreenOutput.length - 1);
+        let firstNumber = 0;
+        for (let i = 0; i < firstNumberArray.length - 1; i++) {
+            firstNumber += Number(firstNumberArray[i]);
+        }
+        console.log(firstNumber);
         let secondNumber = bigScreenOutput;
         bigScreenOutput = Number(firstNumber) + Number(secondNumber);
         document.getElementById('big-screen').innerHTML = bigScreenOutput;
-        document.getElementById('small-screen').innerHTML = '';
+        smallScreenOutput = '';
+        document.getElementById('small-screen').innerHTML = smallScreenOutput;
     }
 
     //Subtraction
-    if (smallScreenOutput.includes('-')) {
+    if (smallScreenOutput.includes(' - ')) {
         let firstNumber = smallScreenOutput.split(' - ', 1);
         let secondNumber = bigScreenOutput;
         bigScreenOutput = Number(firstNumber) - Number(secondNumber);
@@ -162,19 +174,21 @@ function operate () {
     }
 
     //Multiplication
-    if (bigScreenOutput.includes('x')) {
-        let arrayOutput = bigScreenOutput.split('x');
-        let newOutput = Number(arrayOutput[0]) * Number(arrayOutput[1]);
-        document.getElementById('big-screen').innerHTML = newOutput;
-        bigScreenOutput = newOutput;
+    if (smallScreenOutput.includes(' x ')) {
+        let firstNumber = smallScreenOutput.split(' x ', 1);
+        let secondNumber = bigScreenOutput;
+        bigScreenOutput = Number(firstNumber) * Number(secondNumber);
+        document.getElementById('big-screen').innerHTML = bigScreenOutput;
+        document.getElementById('small-screen').innerHTML = '';   
     }
 
     //Division
-    if (bigScreenOutput.includes('÷')) {
-        let arrayOutput = bigScreenOutput.split('÷');
-        let newOutput = Number(arrayOutput[0]) / Number(arrayOutput[1]);
-        document.getElementById('big-screen').innerHTML = newOutput;
-        bigScreenOutput = newOutput;
+    if (smallScreenOutput.includes(' ÷ ')) {
+        let firstNumber = smallScreenOutput.split(' ÷ ', 1);
+        let secondNumber = bigScreenOutput;
+        bigScreenOutput = Number(firstNumber) / Number(secondNumber);
+        document.getElementById('big-screen').innerHTML = bigScreenOutput;
+        document.getElementById('small-screen').innerHTML = '';   
     }
     
     //Percentage
