@@ -107,7 +107,7 @@ let multiply = document.querySelector('#multiply');
 
 multiply.addEventListener('click', function(e) {
     bigScreenOutput += ' x ';
-    smallScreenOutput = bigScreenOutput;
+    smallScreenOutput += bigScreenOutput;
     bigScreenOutput = '';
     document.getElementById('big-screen').innerHTML = bigScreenOutput;
     document.getElementById('small-screen').innerHTML = smallScreenOutput;
@@ -164,9 +164,6 @@ function operate () {
         document.getElementById('small-screen').innerHTML = smallScreenOutput;
     }
 
-
-
-
     //Subtraction
     if (smallScreenOutput.includes(' - ')) {
         let smallScreenArray = smallScreenOutput.split(' - ', smallScreenOutput.length - 1);
@@ -190,12 +187,23 @@ function operate () {
 
     //Multiplication
     if (smallScreenOutput.includes(' x ')) {
-        let firstNumber = smallScreenOutput.split(' x ', 1);
+        let firstNumberArray = smallScreenOutput.split(' x ', smallScreenOutput.length - 1);
+        let firstNumber = 1;
+        console.log(firstNumberArray);
+        for (let i = 0; i < firstNumberArray.length - 1; i++) {
+            firstNumber *= Number(firstNumberArray[i]);
+        }
         let secondNumber = bigScreenOutput;
         bigScreenOutput = Number(firstNumber) * Number(secondNumber);
         document.getElementById('big-screen').innerHTML = bigScreenOutput;
-        document.getElementById('small-screen').innerHTML = '';   
+        smallScreenOutput = '';
+        document.getElementById('small-screen').innerHTML = smallScreenOutput;
     }
+
+
+
+
+
 
     //Division
     if (smallScreenOutput.includes(' ÷ ')) {
