@@ -117,7 +117,7 @@ let divide = document.querySelector('#divide');
 
 divide.addEventListener('click', function(e) {
     bigScreenOutput += ' ÷ ';
-    smallScreenOutput = bigScreenOutput;
+    smallScreenOutput += bigScreenOutput;
     bigScreenOutput = '';
     document.getElementById('big-screen').innerHTML = bigScreenOutput;
     document.getElementById('small-screen').innerHTML = smallScreenOutput;
@@ -181,10 +181,6 @@ function operate () {
         document.getElementById('small-screen').innerHTML = smallScreenOutput;
     }
 
-
-
-
-
     //Multiplication
     if (smallScreenOutput.includes(' x ')) {
         let firstNumberArray = smallScreenOutput.split(' x ', smallScreenOutput.length - 1);
@@ -207,12 +203,27 @@ function operate () {
 
     //Division
     if (smallScreenOutput.includes(' ÷ ')) {
-        let firstNumber = smallScreenOutput.split(' ÷ ', 1);
-        let secondNumber = bigScreenOutput;
-        bigScreenOutput = Number(firstNumber) / Number(secondNumber);
+        let smallScreenArray = smallScreenOutput.split(' ÷ ', smallScreenOutput.length - 1);
+        let result = smallScreenArray[0];
+        
+        for (let i = 1; i < smallScreenArray.length - 1; i++) {
+            result = result / Number(smallScreenArray[i]);
+        }
+    
+        result = result / bigScreenOutput;
+        bigScreenOutput = result;
         document.getElementById('big-screen').innerHTML = bigScreenOutput;
-        document.getElementById('small-screen').innerHTML = '';   
+        smallScreenOutput = '';
+        document.getElementById('small-screen').innerHTML = smallScreenOutput;
+        
+
+
     }
+
+
+
+
+    
     
     //Percentage
     if (bigScreenOutput.includes('%')) {
