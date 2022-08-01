@@ -97,7 +97,7 @@ let minus = document.querySelector('#minus');
 
 minus.addEventListener('click', function(e) {
     bigScreenOutput += ' - ';
-    smallScreenOutput = bigScreenOutput;
+    smallScreenOutput += bigScreenOutput;
     bigScreenOutput = '';
     document.getElementById('big-screen').innerHTML = bigScreenOutput;
     document.getElementById('small-screen').innerHTML = smallScreenOutput;
@@ -153,10 +153,10 @@ function operate () {
     if (smallScreenOutput.includes(' + ')) {
         let firstNumberArray = smallScreenOutput.split(' + ', smallScreenOutput.length - 1);
         let firstNumber = 0;
+        console.log(firstNumberArray);
         for (let i = 0; i < firstNumberArray.length - 1; i++) {
             firstNumber += Number(firstNumberArray[i]);
         }
-        console.log(firstNumber);
         let secondNumber = bigScreenOutput;
         bigScreenOutput = Number(firstNumber) + Number(secondNumber);
         document.getElementById('big-screen').innerHTML = bigScreenOutput;
@@ -164,14 +164,29 @@ function operate () {
         document.getElementById('small-screen').innerHTML = smallScreenOutput;
     }
 
+
+
+
     //Subtraction
     if (smallScreenOutput.includes(' - ')) {
-        let firstNumber = smallScreenOutput.split(' - ', 1);
-        let secondNumber = bigScreenOutput;
-        bigScreenOutput = Number(firstNumber) - Number(secondNumber);
+        let smallScreenArray = smallScreenOutput.split(' - ', smallScreenOutput.length - 1);
+        let firstNumber = smallScreenArray[0];
+        let secondNumber = 0;
+        console.log(smallScreenArray);
+        for (let i = 1; i < smallScreenArray.length - 1; i++) {
+            secondNumber -= smallScreenArray[i];
+        }
+        secondNumber -= bigScreenOutput;
+        console.log(secondNumber);
+        bigScreenOutput = Number(firstNumber) + Number(secondNumber);
         document.getElementById('big-screen').innerHTML = bigScreenOutput;
-        document.getElementById('small-screen').innerHTML = '';
+        smallScreenOutput = '';
+        document.getElementById('small-screen').innerHTML = smallScreenOutput;
     }
+
+
+
+
 
     //Multiplication
     if (smallScreenOutput.includes(' x ')) {
