@@ -151,11 +151,29 @@ clear.addEventListener('click', function(e) {
 });
 
 //Defining the equal sign button function
-function operate () {
+function operate (firstNumber, secondNumber) {
     //Sum
-    if (smallScreenOutput.includes(' + ')) {
-        add();
-    }
+
+        let smallScreenArray = smallScreenOutput.split(' ');
+        console.log(smallScreenArray);
+
+        while(smallScreenArray.length > 3) {
+            if (smallScreenArray[1] == '+') {
+                smallScreenArray[2] = Number(smallScreenArray[0]) + Number(smallScreenArray[2]) 
+                smallScreenArray.shift();
+                smallScreenArray.shift();
+            }
+        }
+
+        if(smallScreenArray.length == 3 && smallScreenArray[1] == '+') {
+            smallScreenArray[0] += Number(bigScreenOutput);
+        }
+        bigScreenOutput = smallScreenArray[0];
+        console.log(smallScreenArray);
+        document.getElementById('big-screen').innerHTML = bigScreenOutput;
+        smallScreenOutput = ''
+        document.getElementById('small-screen').innerHTML = smallScreenOutput;
+
 
     //Subtraction
     if (smallScreenOutput.includes(' - ')) {
