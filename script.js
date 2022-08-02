@@ -154,9 +154,33 @@ clear.addEventListener('click', function(e) {
 function operate () {
     //Sum
     if (smallScreenOutput.includes(' + ')) {
-        let firstNumberArray = smallScreenOutput.split(' + ', smallScreenOutput.length - 1);
+        add();
+    }
+
+    //Subtraction
+    if (smallScreenOutput.includes(' - ')) {
+        subtract();
+    }
+
+    //Multiplication
+    if (smallScreenOutput.includes(' x ')) {
+        multi();
+    }
+
+    //Division
+    if (smallScreenOutput.includes(' ÷ ')) {
+        division();
+    }
+    
+    //Percentage
+    if (smallScreenOutput.includes(' % ')) {
+        percent();  
+    }
+}
+
+function add() {
+    let firstNumberArray = smallScreenOutput.split(' + ', smallScreenOutput.length - 1);
         let firstNumber = 0;
-        console.log(firstNumberArray);
         for (let i = 0; i < firstNumberArray.length - 1; i++) {
             firstNumber += Number(firstNumberArray[i]);
         }
@@ -165,30 +189,25 @@ function operate () {
         document.getElementById('big-screen').innerHTML = bigScreenOutput;
         smallScreenOutput = '';
         document.getElementById('small-screen').innerHTML = smallScreenOutput;
-    }
+}
 
-    //Subtraction
-    if (smallScreenOutput.includes(' - ')) {
-        let smallScreenArray = smallScreenOutput.split(' - ', smallScreenOutput.length - 1);
+function subtract() {
+    let smallScreenArray = smallScreenOutput.split(' - ', smallScreenOutput.length - 1);
         let firstNumber = smallScreenArray[0];
         let secondNumber = 0;
-        console.log(smallScreenArray);
         for (let i = 1; i < smallScreenArray.length - 1; i++) {
             secondNumber -= smallScreenArray[i];
         }
         secondNumber -= bigScreenOutput;
-        console.log(secondNumber);
         bigScreenOutput = Number(firstNumber) + Number(secondNumber);
         document.getElementById('big-screen').innerHTML = bigScreenOutput;
         smallScreenOutput = '';
         document.getElementById('small-screen').innerHTML = smallScreenOutput;
-    }
+}
 
-    //Multiplication
-    if (smallScreenOutput.includes(' x ')) {
-        let firstNumberArray = smallScreenOutput.split(' x ', smallScreenOutput.length - 1);
+function multi() {
+    let firstNumberArray = smallScreenOutput.split(' x ', smallScreenOutput.length - 1);
         let firstNumber = 1;
-        console.log(firstNumberArray);
         for (let i = 0; i < firstNumberArray.length - 1; i++) {
             firstNumber *= Number(firstNumberArray[i]);
         }
@@ -197,11 +216,10 @@ function operate () {
         document.getElementById('big-screen').innerHTML = bigScreenOutput;
         smallScreenOutput = '';
         document.getElementById('small-screen').innerHTML = smallScreenOutput;
-    }
+}
 
-    //Division
-    if (smallScreenOutput.includes(' ÷ ')) {
-        let smallScreenArray = smallScreenOutput.split(' ÷ ', smallScreenOutput.length - 1);
+function division() {
+    let smallScreenArray = smallScreenOutput.split(' ÷ ', smallScreenOutput.length - 1);
         let result = smallScreenArray[0];
         
         for (let i = 1; i < smallScreenArray.length - 1; i++) {
@@ -212,12 +230,10 @@ function operate () {
         document.getElementById('big-screen').innerHTML = bigScreenOutput;
         smallScreenOutput = '';
         document.getElementById('small-screen').innerHTML = smallScreenOutput;
-        
-    }
-    
-    //Percentage
-    if (smallScreenOutput.includes(' % ')) {
-        let smallScreenArray = smallScreenOutput.split(' % ', smallScreenOutput.length - 1);
+}
+
+function percent() {
+    let smallScreenArray = smallScreenOutput.split(' % ', smallScreenOutput.length - 1);
         let result = smallScreenArray[0];
         if (bigScreenOutput == '') {
             result = result / 100;
@@ -227,14 +243,9 @@ function operate () {
                 result = (result / 100) * Number(smallScreenArray[i]);
             }
         }
-        console.log(smallScreenArray[1])
         result = (result / 100) * bigScreenOutput;
         bigScreenOutput = result;
         document.getElementById('big-screen').innerHTML = bigScreenOutput;
         smallScreenOutput = '';
         document.getElementById('small-screen').innerHTML = smallScreenOutput;
-        
-    }
-
 }
-
