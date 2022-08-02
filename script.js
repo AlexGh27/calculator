@@ -126,8 +126,11 @@ divide.addEventListener('click', function(e) {
 let percentage = document.querySelector('#percentage');
 
 percentage.addEventListener('click', function(e) {
-    bigScreenOutput += '';
+    bigScreenOutput += ' % ';
+    smallScreenOutput += bigScreenOutput;
+    bigScreenOutput = '';
     document.getElementById('big-screen').innerHTML = bigScreenOutput;
+    document.getElementById('small-screen').innerHTML = smallScreenOutput;
 });
 
 let equal = document.querySelector('#equal');
@@ -196,11 +199,6 @@ function operate () {
         document.getElementById('small-screen').innerHTML = smallScreenOutput;
     }
 
-
-
-
-
-
     //Division
     if (smallScreenOutput.includes(' ÷ ')) {
         let smallScreenArray = smallScreenOutput.split(' ÷ ', smallScreenOutput.length - 1);
@@ -209,31 +207,32 @@ function operate () {
         for (let i = 1; i < smallScreenArray.length - 1; i++) {
             result = result / Number(smallScreenArray[i]);
         }
-    
         result = result / bigScreenOutput;
         bigScreenOutput = result;
         document.getElementById('big-screen').innerHTML = bigScreenOutput;
         smallScreenOutput = '';
         document.getElementById('small-screen').innerHTML = smallScreenOutput;
         
-
-
     }
-
-
-
-
-    
     
     //Percentage
-    if (bigScreenOutput.includes('%')) {
-        let arrayOutput = bigScreenOutput.split('%');
-        if (arrayOutput[1] == ' ') {
-            arrayOutput[1] = 1;
+    if (smallScreenOutput.includes(' % ')) {
+        let smallScreenArray = smallScreenOutput.split(' % ', smallScreenOutput.length - 1);
+        let result = smallScreenArray[0];
+        if (bigScreenOutput == '') {
+            result = result / 100;
         }
-        let newOutput = Number(arrayOutput[0]) / 100 * Number(arrayOutput[1]);
-        document.getElementById('big-screen').innerHTML = newOutput;
-        bigScreenOutput = newOutput;
+        else {
+            for (let i = 1; i < smallScreenArray.length - 1; i++) {
+                result = (result / 100) * Number(smallScreenArray[i]);
+            }
+        }
+        console.log(smallScreenArray[1])
+        result = (result / 100) * bigScreenOutput;
+        bigScreenOutput = result;
+        document.getElementById('big-screen').innerHTML = bigScreenOutput;
+        smallScreenOutput = '';
+        document.getElementById('small-screen').innerHTML = smallScreenOutput;
         
     }
 
