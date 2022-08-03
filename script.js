@@ -147,6 +147,27 @@ clear.addEventListener('click', function(e) {
     smallScreenOutput = '';
     document.getElementById('big-screen').innerHTML = bigScreenOutput;
     document.getElementById('small-screen').innerHTML = smallScreenOutput;
+});
+
+let del = document.querySelector('#del');
+
+
+
+
+del.addEventListener('click', function(e) {
+    let smallScreenArray = smallScreenOutput.split(' ');
+    if (bigScreenOutput === '') {
+        smallScreenArray.pop();
+        console.log(smallScreenArray);
+    }
+    else {
+        bigScreenOutput = '';
+    }
+
+    smallScreenArray.join('');
+    smallScreenOutput = smallScreenArray;
+    document.getElementById('big-screen').innerHTML = bigScreenOutput;
+    document.getElementById('small-screen').innerHTML = smallScreenOutput;
 
 });
 
