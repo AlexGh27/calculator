@@ -1,8 +1,7 @@
 
 let bigScreenOutput = '';
-let smallScreenOutput = '';
+
 document.getElementById('big-screen').innerHTML = bigScreenOutput;
-document.getElementById('small-screen').innerHTML = smallScreenOutput;
 
 
 //Defining all the functions for all the calculator's numbers
@@ -87,50 +86,35 @@ let plus = document.querySelector('#plus');
 
 plus.addEventListener('click', function(e) {
     bigScreenOutput += ' + ';
-    smallScreenOutput += bigScreenOutput;
-    bigScreenOutput = '';
-    document.getElementById('big-screen').innerHTML = bigScreenOutput;
-    document.getElementById('small-screen').innerHTML = smallScreenOutput;
+    document.getElementById('big-screen').innerHTML = bigScreenOutput; 
 });
 
 let minus = document.querySelector('#minus');
 
 minus.addEventListener('click', function(e) {
     bigScreenOutput += ' - ';
-    smallScreenOutput += bigScreenOutput;
-    bigScreenOutput = '';
     document.getElementById('big-screen').innerHTML = bigScreenOutput;
-    document.getElementById('small-screen').innerHTML = smallScreenOutput;
 });
 
 let multiply = document.querySelector('#multiply');
 
 multiply.addEventListener('click', function(e) {
     bigScreenOutput += ' x ';
-    smallScreenOutput += bigScreenOutput;
-    bigScreenOutput = '';
     document.getElementById('big-screen').innerHTML = bigScreenOutput;
-    document.getElementById('small-screen').innerHTML = smallScreenOutput;
 });
 
 let divide = document.querySelector('#divide');
 
 divide.addEventListener('click', function(e) {
     bigScreenOutput += ' ÷ ';
-    smallScreenOutput += bigScreenOutput;
-    bigScreenOutput = '';
     document.getElementById('big-screen').innerHTML = bigScreenOutput;
-    document.getElementById('small-screen').innerHTML = smallScreenOutput;
 });
 
 let percentage = document.querySelector('#percentage');
 
 percentage.addEventListener('click', function(e) {
     bigScreenOutput += ' % ';
-    smallScreenOutput += bigScreenOutput;
-    bigScreenOutput = '';
     document.getElementById('big-screen').innerHTML = bigScreenOutput;
-    document.getElementById('small-screen').innerHTML = smallScreenOutput;
 });
 
 let equal = document.querySelector('#equal');
@@ -144,108 +128,83 @@ let clear = document.querySelector('#clear');
 
 clear.addEventListener('click', function(e) {
     bigScreenOutput = '';
-    smallScreenOutput = '';
     document.getElementById('big-screen').innerHTML = bigScreenOutput;
-    document.getElementById('small-screen').innerHTML = smallScreenOutput;
 });
 
-let del = document.querySelector('#del');
 
 
-
-
-del.addEventListener('click', function(e) {
-    let smallScreenArray = smallScreenOutput.split(' ');
-    if (bigScreenOutput === '') {
-        smallScreenArray.pop();
-        console.log(smallScreenArray);
-    }
-    else {
-        bigScreenOutput = '';
-    }
-
-    smallScreenArray.join('');
-    smallScreenOutput = smallScreenArray;
-    document.getElementById('big-screen').innerHTML = bigScreenOutput;
-    document.getElementById('small-screen').innerHTML = smallScreenOutput;
-
-});
 
 //Defining the equal sign button function
 function operate () {
     //Sum
 
-        let smallScreenArray = smallScreenOutput.split(' ');
+        let bigSreenArray = bigScreenOutput.split(' ');
 
-        while(smallScreenArray.length > 3) {
-            if (smallScreenArray[1] == '+') {
-                smallScreenArray[2] = Number(smallScreenArray[0]) + Number(smallScreenArray[2]) 
-                smallScreenArray.shift();
-                smallScreenArray.shift();
+        while(bigSreenArray.length > 3) {
+            if (bigSreenArray[1] == '+') {
+                bigSreenArray[2] = Number(bigSreenArray[0]) + Number(bigSreenArray[2]) 
+                bigSreenArray.shift();
+                bigSreenArray.shift();
             }
 
-            else if (smallScreenArray[1] == '-') {
-                smallScreenArray[2] = Number(smallScreenArray[0]) - Number(smallScreenArray[2])
-                smallScreenArray.shift();
-                smallScreenArray.shift();
+            else if (bigSreenArray[1] == '-') {
+                bigSreenArray[2] = Number(bigSreenArray[0]) - Number(bigSreenArray[2])
+                bigSreenArray.shift();
+                bigSreenArray.shift();
             }
 
-            else if (smallScreenArray[1] == 'x') {
-                smallScreenArray[2] = Number(smallScreenArray[0]) * Number(smallScreenArray[2])
-                smallScreenArray.shift();
-                smallScreenArray.shift();
+            else if (bigSreenArray[1] == 'x') {
+                bigSreenArray[2] = Number(bigSreenArray[0]) * Number(bigSreenArray[2])
+                bigSreenArray.shift();
+                bigSreenArray.shift();
             }
 
-            else if (smallScreenArray[1] == '÷') {
-                smallScreenArray[2] = Number(smallScreenArray[0]) / Number(smallScreenArray[2])
-                smallScreenArray.shift();
-                smallScreenArray.shift();
+            else if (bigSreenArray[1] == '÷') {
+                bigSreenArray[2] = Number(bigSreenArray[0]) / Number(bigSreenArray[2])
+                bigSreenArray.shift();
+                bigSreenArray.shift();
             }
 
-            else if (smallScreenArray[1] == '%') {
-                smallScreenArray[2] = (Number(smallScreenArray[0]) / 100) * Number(smallScreenArray[2])
-                smallScreenArray.shift();
-                smallScreenArray.shift();
+            else if (bigSreenArray[1] == '%') {
+                bigSreenArray[2] = (Number(bigSreenArray[0]) / 100) * Number(bigSreenArray[2])
+                bigSreenArray.shift();
+                bigSreenArray.shift();
             }
 
         }
 
-        if(smallScreenArray.length <= 3 && smallScreenArray[1] === '+') {
-            bigScreenOutput = Number(smallScreenArray[0]) + Number(bigScreenOutput);
+        if(bigSreenArray.length <= 3 && bigSreenArray[1] === '+') {
+            bigScreenOutput = Number(bigSreenArray[0]) + Number(bigSreenArray[2]);
             document.getElementById('big-screen').innerHTML = bigScreenOutput;
-            smallScreenOutput = '';
-            document.getElementById('small-screen').innerHTML = smallScreenOutput;
         }
 
-        else if(smallScreenArray.length <= 3 && smallScreenArray[1] === '-') {
-            bigScreenOutput = Number(smallScreenArray[0]) - Number(bigScreenOutput);
+        else if(bigSreenArray.length <= 3 && bigSreenArray[1] === '-') {
+            bigScreenOutput = Number(bigSreenArray[0]) - Number(bigSreenArray[2]);
             document.getElementById('big-screen').innerHTML = bigScreenOutput;
-            smallScreenOutput = '';
-            document.getElementById('small-screen').innerHTML = smallScreenOutput;
         }
 
-        else if(smallScreenArray.length <= 3 && smallScreenArray[1] === 'x') {
-            bigScreenOutput = Number(smallScreenArray[0]) * Number(bigScreenOutput);
+        else if(bigSreenArray.length <= 3 && bigSreenArray[1] === 'x') {
+            bigScreenOutput = Number(bigSreenArray[0]) * Number(bigSreenArray[2]);
             document.getElementById('big-screen').innerHTML = bigScreenOutput;
-            smallScreenOutput = '';
-            document.getElementById('small-screen').innerHTML = smallScreenOutput;
         }
 
-        else if(smallScreenArray.length <= 3 && smallScreenArray[1] === '÷') {
-            bigScreenOutput = Number(smallScreenArray[0]) / Number(bigScreenOutput);
-            if (bigScreenOutput = '0') {
+        else if(bigSreenArray.length <= 3 && bigSreenArray[1] === '÷') {
+            bigScreenOutput = Number(bigSreenArray[0]) / Number(bigSreenArray[2]);
+            if (bigSreenArray[2] === '0') {
                 bigScreenOutput = 'Sorry, you tried to divide by 0 and the calculator doesn\'t like it';
             }
             document.getElementById('big-screen').innerHTML = bigScreenOutput;
-            smallScreenOutput = '';
-            document.getElementById('small-screen').innerHTML = smallScreenOutput;
         }
 
-        else if(smallScreenArray.length <= 3 && smallScreenArray[1] === '%') {
-            bigScreenOutput = (Number(smallScreenArray[0]) / 100) * Number(bigScreenOutput);
+        else if(bigSreenArray.length <= 3 && bigSreenArray[1] === '%') {
+            if (bigSreenArray[2] === '') {
+                bigScreenOutput = Number(bigSreenArray[0]) / 100;
+                
+            }
+            else {
+                bigScreenOutput = (Number(bigSreenArray[0]) / 100) * Number(bigSreenArray[2]);
+            }
             document.getElementById('big-screen').innerHTML = bigScreenOutput;
-            smallScreenOutput = '';
-            document.getElementById('small-screen').innerHTML = smallScreenOutput;
         }
     }
 
