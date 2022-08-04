@@ -77,8 +77,18 @@ nine.addEventListener('click', function(e) {
 
 let dot = document.querySelector('#dot');
 
+let bigScreenArray = bigScreenOutput.split(' ');
 dot.addEventListener('click', function(e) {
-    bigScreenOutput += '.';
+    
+    if (bigScreenArray[bigScreenArray.length - 1] === '.') {
+        document.querySelector('#button').disabled = true;
+    }
+    else {
+            bigScreenOutput += '.';
+            document.getElementById('big-screen').innerHTML = bigScreenOutput;
+    }
+    
+    
     document.getElementById('big-screen').innerHTML = bigScreenOutput;
 });
 
