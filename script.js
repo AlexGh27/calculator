@@ -8,86 +8,112 @@ document.getElementById('big-screen').innerHTML = bigScreenOutput;
 let zero = document.querySelector('#zero');
 
 zero.addEventListener('click', function(e) {
-    bigScreenOutput += '0';
+    let bigScreenArray = bigScreenOutput.split('');
+    if (bigScreenArray.length < 22) {
+        bigScreenOutput += '0';
     document.getElementById('big-screen').innerHTML = bigScreenOutput;
+    }
+    
 });
 
 let one = document.querySelector('#one');
 
 one.addEventListener('click', function(e) {
-    bigScreenOutput += '1';
+    let bigScreenArray = bigScreenOutput.split('');
+    if (bigScreenArray.length < 22) {
+        bigScreenOutput += '1';
     document.getElementById('big-screen').innerHTML = bigScreenOutput;
+    }
 });
 
 let two = document.querySelector('#two');
 
 two.addEventListener('click', function(e) {
-    bigScreenOutput += '2';
+    let bigScreenArray = bigScreenOutput.split('');
+    if (bigScreenArray.length < 22) {
+        bigScreenOutput += '2';
     document.getElementById('big-screen').innerHTML = bigScreenOutput;
+    }
 });
 
 let three = document.querySelector('#three');
 
 three.addEventListener('click', function(e) {
-    bigScreenOutput += '3';
+    let bigScreenArray = bigScreenOutput.split('');
+    if (bigScreenArray.length < 22) {
+        bigScreenOutput += '3';
     document.getElementById('big-screen').innerHTML = bigScreenOutput;
+    }
 });
 
 let four = document.querySelector('#four');
 
 four.addEventListener('click', function(e) {
-    bigScreenOutput += '4';
+    let bigScreenArray = bigScreenOutput.split('');
+    if (bigScreenArray.length < 22) {
+        bigScreenOutput += '4';
     document.getElementById('big-screen').innerHTML = bigScreenOutput;
+    }
 });
 
 let five = document.querySelector('#five');
 
 five.addEventListener('click', function(e) {
-    bigScreenOutput += '5';
+    let bigScreenArray = bigScreenOutput.split('');
+    if (bigScreenArray.length < 22) {
+        bigScreenOutput += '5';
     document.getElementById('big-screen').innerHTML = bigScreenOutput;
+    }
 });
 
 let six = document.querySelector('#six');
 
 six.addEventListener('click', function(e) {
-    bigScreenOutput += '6';
+    let bigScreenArray = bigScreenOutput.split('');
+    if (bigScreenArray.length < 22) {
+        bigScreenOutput += '6';
     document.getElementById('big-screen').innerHTML = bigScreenOutput;
+    }
 });
 
 let seven = document.querySelector('#seven');
 
 seven.addEventListener('click', function(e) {
-    bigScreenOutput += '7';
+    let bigScreenArray = bigScreenOutput.split('');
+    if (bigScreenArray.length < 22) {
+        bigScreenOutput += '7';
     document.getElementById('big-screen').innerHTML = bigScreenOutput;
+    }
 });
 
 let eight = document.querySelector('#eight');
 
 eight.addEventListener('click', function(e) {
-    bigScreenOutput += '8';
+    let bigScreenArray = bigScreenOutput.split('');
+    if (bigScreenArray.length < 22) {
+        bigScreenOutput += '8';
     document.getElementById('big-screen').innerHTML = bigScreenOutput;
+    }
 });
 
 let nine = document.querySelector('#nine');
 
 nine.addEventListener('click', function(e) {
-    bigScreenOutput += '9';
+    let bigScreenArray = bigScreenOutput.split('');
+    if (bigScreenArray.length < 22) {
+        bigScreenOutput += '9';
     document.getElementById('big-screen').innerHTML = bigScreenOutput;
+    }
 });
 
 let dot = document.querySelector('#dot');
 
-let bigScreenArray = bigScreenOutput.split(' ');
+
 dot.addEventListener('click', function(e) {
-    
-    if (bigScreenArray[bigScreenArray.length - 1] === '.') {
-        document.querySelector('#button').disabled = true;
+    let bigScreenArray = bigScreenOutput.split('');
+    if (bigScreenArray[bigScreenArray.length - 1] !== '.' && bigScreenArray.length < 21) {
+        bigScreenOutput += '.';
     }
-    else {
-            bigScreenOutput += '.';
-            document.getElementById('big-screen').innerHTML = bigScreenOutput;
-    }
-    
     
     document.getElementById('big-screen').innerHTML = bigScreenOutput;
 });
@@ -95,36 +121,52 @@ dot.addEventListener('click', function(e) {
 let plus = document.querySelector('#plus');
 
 plus.addEventListener('click', function(e) {
-    bigScreenOutput += ' + ';
-    document.getElementById('big-screen').innerHTML = bigScreenOutput; 
+    let bigScreenArray = bigScreenOutput.split(' ');
+    if (bigScreenArray[bigScreenArray.length - 1] !== '+' && bigScreenArray.length < 22) {
+        bigScreenOutput += ' + ';
+        console.log(bigScreenArray);
+    document.getElementById('big-screen').innerHTML = bigScreenOutput;
+    } 
 });
 
 let minus = document.querySelector('#minus');
 
 minus.addEventListener('click', function(e) {
-    bigScreenOutput += ' - ';
+    let bigScreenArray = bigScreenOutput.split('');
+    if (bigScreenArray.length < 22) {
+        bigScreenOutput += ' - ';
     document.getElementById('big-screen').innerHTML = bigScreenOutput;
+    }
 });
 
 let multiply = document.querySelector('#multiply');
 
 multiply.addEventListener('click', function(e) {
-    bigScreenOutput += ' x ';
+    let bigScreenArray = bigScreenOutput.split('');
+    if (bigScreenArray.length < 22) {
+        bigScreenOutput += ' x ';
     document.getElementById('big-screen').innerHTML = bigScreenOutput;
+    }
 });
 
 let divide = document.querySelector('#divide');
 
 divide.addEventListener('click', function(e) {
-    bigScreenOutput += ' ÷ ';
+    let bigScreenArray = bigScreenOutput.split('');
+    if (bigScreenArray.length < 22) {
+        bigScreenOutput += ' ÷ ';
     document.getElementById('big-screen').innerHTML = bigScreenOutput;
+    }
 });
 
 let percentage = document.querySelector('#percentage');
 
 percentage.addEventListener('click', function(e) {
-    bigScreenOutput += ' % ';
+    let bigScreenArray = bigScreenOutput.split('');
+    if (bigScreenArray.length < 22) {
+        bigScreenOutput += ' % ';
     document.getElementById('big-screen').innerHTML = bigScreenOutput;
+    }
 });
 
 let equal = document.querySelector('#equal');
