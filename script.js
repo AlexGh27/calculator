@@ -122,7 +122,7 @@ let plus = document.querySelector('#plus');
 
 plus.addEventListener('click', function(e) {
     let bigScreenArray = bigScreenOutput.split(' ');
-    if (bigScreenArray[bigScreenArray.length - 1] !== '+' && bigScreenArray.length < 22) {
+    if (bigScreenArray.length < 20) {
         bigScreenOutput += ' + ';
         console.log(bigScreenArray);
     document.getElementById('big-screen').innerHTML = bigScreenOutput;
@@ -132,18 +132,18 @@ plus.addEventListener('click', function(e) {
 let minus = document.querySelector('#minus');
 
 minus.addEventListener('click', function(e) {
-    let bigScreenArray = bigScreenOutput.split('');
-    if (bigScreenArray.length < 22) {
+    let bigScreenArray = bigScreenOutput.split(' ');
+    if (bigScreenArray.length < 20) {
         bigScreenOutput += ' - ';
     document.getElementById('big-screen').innerHTML = bigScreenOutput;
-    }
+    } 
 });
 
 let multiply = document.querySelector('#multiply');
 
 multiply.addEventListener('click', function(e) {
     let bigScreenArray = bigScreenOutput.split('');
-    if (bigScreenArray.length < 22) {
+    if (bigScreenArray.length < 20) {
         bigScreenOutput += ' x ';
     document.getElementById('big-screen').innerHTML = bigScreenOutput;
     }
@@ -153,7 +153,7 @@ let divide = document.querySelector('#divide');
 
 divide.addEventListener('click', function(e) {
     let bigScreenArray = bigScreenOutput.split('');
-    if (bigScreenArray.length < 22) {
+    if (bigScreenArray.length < 20) {
         bigScreenOutput += ' ÷ ';
     document.getElementById('big-screen').innerHTML = bigScreenOutput;
     }
@@ -163,7 +163,7 @@ let percentage = document.querySelector('#percentage');
 
 percentage.addEventListener('click', function(e) {
     let bigScreenArray = bigScreenOutput.split('');
-    if (bigScreenArray.length < 22) {
+    if (bigScreenArray.length < 20) {
         bigScreenOutput += ' % ';
     document.getElementById('big-screen').innerHTML = bigScreenOutput;
     }
@@ -227,7 +227,7 @@ function operate () {
 
         if(bigSreenArray.length <= 3 && bigSreenArray[1] === '+') {
             bigScreenOutput = Number(bigSreenArray[0]) + Number(bigSreenArray[2]);
-            document.getElementById('big-screen').innerHTML = bigScreenOutput;
+            document.getElementById('big-screen').innerHTML = bigScreenOutput;   
         }
 
         else if(bigSreenArray.length <= 3 && bigSreenArray[1] === '-') {
@@ -243,7 +243,7 @@ function operate () {
         else if(bigSreenArray.length <= 3 && bigSreenArray[1] === '÷') {
             bigScreenOutput = Number(bigSreenArray[0]) / Number(bigSreenArray[2]);
             if (bigSreenArray[2] === '0') {
-                bigScreenOutput = 'Sorry, you tried to divide by 0 and the calculator doesn\'t like it';
+                bigScreenOutput = 'You divided by 0 and created a black hole!';
             }
             document.getElementById('big-screen').innerHTML = bigScreenOutput;
         }
@@ -257,8 +257,12 @@ function operate () {
                 bigScreenOutput = (Number(bigSreenArray[0]) / 100) * Number(bigSreenArray[2]);
             }
             document.getElementById('big-screen').innerHTML = bigScreenOutput;
-        }
+            
+        } 
+          
+        
     }
+
 
 
 
